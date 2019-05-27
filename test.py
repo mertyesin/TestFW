@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import pytest
 from selenium import webdriver
+import time
+import highlight
 
 def test_google():
 	driver = webdriver.Chrome()
@@ -13,4 +15,7 @@ def test_google():
 	sign_on_elements = driver.find_elements_by_xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p/font/b")
 	if len(sign_on_elements) > 0:
 		text = sign_on_elements[0].text
+		highlight.highlight(sign_on_elements[0])
 		assert text == "Welcome back to Mercury Tours!"
+	time.sleep(1)
+	driver.close()
