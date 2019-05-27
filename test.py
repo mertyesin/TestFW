@@ -4,7 +4,7 @@ from selenium import webdriver
 import time
 import highlight
 
-def test_google():
+def test_guru99():
 	driver = webdriver.Chrome()
 	driver.get("http://demo.guru99.com/test/newtours/index.php")
 	
