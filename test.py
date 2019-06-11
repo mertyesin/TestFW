@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import pytest
-from selenium import webdriver
+#from selenium import webdriver
 import time
 import highlight
-import library
+from library import *
 
 def test_guru99():
-	browser = library.Browser(type="chrome")
-	browser.create_driver()
+	browser = Browser(type="chrome")
+	driver = browser.create_driver()
 	driver.get("http://demo.guru99.com/test/newtours/index.php")
 	
 	home_page_elements = driver.find_elements_by_xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[1]/a")
