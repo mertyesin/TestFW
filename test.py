@@ -1,6 +1,4 @@
-#!/usr/bin/env python
 import pytest
-#from selenium import webdriver
 import time
 import highlight
 from library import *
