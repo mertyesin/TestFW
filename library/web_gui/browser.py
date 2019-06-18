@@ -1,5 +1,6 @@
 from selenium import webdriver
 
+
 class Browser(object):
 
     def __init__(self, browser_type):
