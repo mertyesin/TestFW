@@ -40,6 +40,11 @@ class RegisterForm(object):
         self.phone_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td[2]/input"
         self.email_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[5]/td[2]/input"
 
+        self.address_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[7]/td[2]/input"
+        self.city_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[8]/td[2]/input"
+        self.state_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[9]/td[2]/input"
+        self.postalCode_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[10]/td[2]/input"
+
         self.submit_button_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[17]/td/input"
 
     def get_first_name_textbox(self):
@@ -51,26 +56,62 @@ class RegisterForm(object):
     def get_last_name_textbox(self):
         return Textbox(self.driver, self.last_name_textbox_path)
 
-    def set_last_name_textbox(self, first_name):
-        self.get_last_name_textbox().set_text(first_name)
+    def set_last_name_textbox(self, last_name):
+        self.get_last_name_textbox().set_text(last_name)
 
     def get_phone_textbox(self):
         return Textbox(self.driver, self.phone_textbox_path)
 
-    def set_phone_textbox(self, first_name):
-        self.get_phone_textbox().set_text(first_name)
+    def set_phone_textbox(self, phone):
+        self.get_phone_textbox().set_text(phone)
 
     def get_email_textbox(self):
         return Textbox(self.driver, self.email_textbox_path)
 
-    def set_email_textbox(self, first_name):
-        self.get_email_textbox().set_text(first_name)
+    def set_email_textbox(self, email):
+        self.get_email_textbox().set_text(email)
+
+    def get_address_textbox(self):
+        return Textbox(self.driver, self.address_textbox_path)
+
+    def set_address_textbox(self, address):
+        self.get_address_textbox().set_text(address)
+
+    def get_city_textbox(self):
+        return Textbox(self.driver, self.city_textbox_path)
+
+    def set_city_textbox(self, city):
+        self.get_city_textbox().set_text(city)
+
+    def get_state_textbox(self):
+        return Textbox(self.driver, self.state_textbox_path)
+
+    def set_state_textbox(self, state):
+        self.get_state_textbox().set_text(state)
+
+    def get_postalCode_textbox(self):
+        return Textbox(self.driver, self.postalCode_textbox_path)
+
+    def set_postalCode_textbox(self, postalcode):
+        self.get_postalCode_textbox().set_text(postalcode)
+
+    '''
+        def get_country_textbox(self):
+        return Textbox(self.driver, self.country_textbox_path)
+
+        def set_country_textbox(self, country):
+            self.get_country_textbox().set_text(country)
+    '''
 
     def fill_register_form(self, form_data):
         self.set_first_name_textbox(form_data[0]["first_name"])
         self.set_last_name_textbox(form_data[0]["last_name"])
         self.set_phone_textbox(form_data[0]["phone"])
         self.set_email_textbox(form_data[0]["email"])
+        self.set_address_textbox(form_data[0]["address"])
+        self.set_city_textbox(form_data[0]["city"])
+        self.set_state_textbox(form_data[0]["state"])
+        self.set_postalCode_textbox(form_data[0]["postalCode"])
 
     def get_submit_button(self):
         return Button(self.driver, self.submit_button_path)
