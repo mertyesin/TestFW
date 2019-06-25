@@ -1,4 +1,11 @@
 import time
+import json
+
+with open("/home/mert/Documents/Training/TestFW/library/web_gui/object_repository.json", "r") as json_file:
+    object_repository = json.loads(json_file.read())
+print(object_repository["MainPage"][0]["register"])
+
+countryList = {'ALBANIA': '1', 'ALGERIA': '2', 'AMERICAN SAMOA': '3'}
 
 
 class PageObject(object):
@@ -22,7 +29,7 @@ class TabMenu(object):
 
     def __init__(self, driver):
         self.driver = driver
-        self.register_label_path = """/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody//a[text()[contains(., "REGISTER")]]"""
+        self.register_label_path = object_repository["MainPage"][0]["register"]
 
     def get_register_label(self):
         return Label(self.driver, self.register_label_path)
@@ -35,17 +42,18 @@ class RegisterForm(object):
 
     def __init__(self, driver):
         self.driver = driver
-        self.first_name_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[2]/td[2]/input"
-        self.last_name_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[3]/td[2]/input"
-        self.phone_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td[2]/input"
-        self.email_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[5]/td[2]/input"
+        self.first_name_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["first_name_textbox_path"]
+        self.last_name_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["last_name_textbox_path"]
+        self.phone_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["phone_textbox_path"]
+        self.email_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["email_textbox_path"]
 
-        self.address_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[7]/td[2]/input"
-        self.city_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[8]/td[2]/input"
-        self.state_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[9]/td[2]/input"
-        self.postalCode_textbox_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[10]/td[2]/input"
-
-        self.submit_button_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[17]/td/input"
+        self.address_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["address_textbox_path"]
+        self.city_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["city_textbox_path"]
+        self.state_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["state_textbox_path"]
+        self.postalCode_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["postalCode_textbox_path"]
+        self.dropDown_list__path = object_repository["MainPage"][0]["registerPage"][0][
+            "dropDown_list__path"]
+        self.submit_button_path = object_repository["MainPage"][0]["registerPage"][0]["submit_button_path"]
 
     def get_first_name_textbox(self):
         return Textbox(self.driver, self.first_name_textbox_path)
@@ -95,13 +103,11 @@ class RegisterForm(object):
     def set_postalCode_textbox(self, postalcode):
         self.get_postalCode_textbox().set_text(postalcode)
 
-    '''
-        def get_country_textbox(self):
-        return Textbox(self.driver, self.country_textbox_path)
+    def get_country_multiple_selection(self):
+        return DropDownList(self.driver, self.dropDown_list__path)
 
-        def set_country_textbox(self, country):
-            self.get_country_textbox().set_text(country)
-    '''
+    def set_country_multiple_selection(self, country):
+        self.get_country_multiple_selection().set_text(country)
 
     def fill_register_form(self, form_data):
         self.set_first_name_textbox(form_data[0]["first_name"])
@@ -112,6 +118,7 @@ class RegisterForm(object):
         self.set_city_textbox(form_data[0]["city"])
         self.set_state_textbox(form_data[0]["state"])
         self.set_postalCode_textbox(form_data[0]["postalCode"])
+        self.set_country_multiple_selection(form_data[0]["country"])
 
     def get_submit_button(self):
         return Button(self.driver, self.submit_button_path)
@@ -124,7 +131,8 @@ class RegisterResultPage(object):
 
     def __init__(self, driver):
         self.driver = driver
-        self.result_message_label_path = "/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[2]/font"
+        self.result_message_label_path = object_repository["MainPage"][0]["registerPage"][1][
+            "register_result_message_path"]
 
     def get_result_message_label(self):
         return Label(self.driver, self.result_message_label_path)
@@ -169,6 +177,18 @@ class Textbox(Component):
         self.get().click()
         self.get().clear()
         self.get().send_keys(str(text))
+
+
+class DropDownList(Component):
+
+    def __init__(self, driver, path):
+        super(DropDownList, self).__init__(driver, path)
+        global countryList
+        self.path = path
+
+    def set_text(self, text):
+        self.path = self.path + "/option[" + countryList[text] + "]"
+        self.get().click()
 
 
 class Button(Component):
