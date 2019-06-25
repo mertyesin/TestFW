@@ -3,7 +3,6 @@ import json
 
 with open("/home/mert/Documents/Training/TestFW/library/web_gui/object_repository.json", "r") as json_file:
     object_repository = json.loads(json_file.read())
-print(object_repository["MainPage"][0]["register"])
 
 countryList = {'ALBANIA': '1', 'ALGERIA': '2', 'AMERICAN SAMOA': '3'}
 
