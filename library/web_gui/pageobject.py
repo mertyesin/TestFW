@@ -50,8 +50,11 @@ class RegisterForm(object):
         self.city_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["city_textbox_path"]
         self.state_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["state_textbox_path"]
         self.postalCode_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["postalCode_textbox_path"]
-        self.dropDown_list__path = object_repository["MainPage"][0]["registerPage"][0][
-            "dropDown_list__path"]
+        self.dropDown_list__path = object_repository["MainPage"][0]["registerPage"][0]["dropDown_list__path"]
+        # self.username_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["username_textbox_path"]
+        self.password_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["password_textbox_path"]
+        self.confirm_password_textbox_path = object_repository["MainPage"][0]["registerPage"][0][
+            "confirm_password_textbox_path"]
         self.submit_button_path = object_repository["MainPage"][0]["registerPage"][0]["submit_button_path"]
 
     def get_first_name_textbox(self):
@@ -108,6 +111,24 @@ class RegisterForm(object):
     def set_country_multiple_selection(self, country):
         self.get_country_multiple_selection().set_text(country)
 
+    # def get_username_textbox(self):
+    # return Textbox(self.driver, self.username_textbox_path)
+
+    # def set_username_textbox(self, username):
+    # self.get_username_textbox().set_text(username)
+
+    def get_password_textbox(self):
+        return Textbox(self.driver, self.password_textbox_path)
+
+    def set_password_textbox(self, password):
+        self.get_password_textbox().set_text(password)
+
+    def get_confirm_password_textbox(self):
+        return Textbox(self.driver, self.confirm_password_textbox_path)
+
+    def set_confirm_password_textbox(self, password):
+        self.get_confirm_password_textbox().set_text(password)
+
     def fill_register_form(self, form_data):
         self.set_first_name_textbox(form_data[0]["first_name"])
         self.set_last_name_textbox(form_data[0]["last_name"])
@@ -118,6 +139,8 @@ class RegisterForm(object):
         self.set_state_textbox(form_data[0]["state"])
         self.set_postalCode_textbox(form_data[0]["postalCode"])
         self.set_country_multiple_selection(form_data[0]["country"])
+        self.set_password_textbox(form_data[0]["password"])
+        self.set_confirm_password_textbox(form_data[0]["confirm_password"])
 
     def get_submit_button(self):
         return Button(self.driver, self.submit_button_path)

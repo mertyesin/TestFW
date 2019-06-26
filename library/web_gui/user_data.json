@@ -9,7 +9,10 @@
       "city": "Berlin",
       "state": "Germany",
       "postalCode": "655814",
-      "country": "AMERICAN SAMOA"
+      "country": "AMERICAN SAMOA",
+      "username": "mertyesin",
+      "password": "268426",
+      "confirm_password": "268426"
     }
   ]
 }
