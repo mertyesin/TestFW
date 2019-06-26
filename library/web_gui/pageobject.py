@@ -1,5 +1,6 @@
 import time
 import json
+from selenium.common.exceptions import NoSuchElementException
 
 with open("/home/mert/Documents/Training/TestFW/library/web_gui/object_repository.json", "r") as json_file:
     object_repository = json.loads(json_file.read())
@@ -51,7 +52,7 @@ class RegisterForm(object):
         self.state_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["state_textbox_path"]
         self.postalCode_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["postalCode_textbox_path"]
         self.dropDown_list__path = object_repository["MainPage"][0]["registerPage"][0]["dropDown_list__path"]
-        # self.username_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["username_textbox_path"]
+        self.username_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["username_textbox_path"]
         self.password_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["password_textbox_path"]
         self.confirm_password_textbox_path = object_repository["MainPage"][0]["registerPage"][0][
             "confirm_password_textbox_path"]
@@ -111,11 +112,11 @@ class RegisterForm(object):
     def set_country_multiple_selection(self, country):
         self.get_country_multiple_selection().set_text(country)
 
-    # def get_username_textbox(self):
-    # return Textbox(self.driver, self.username_textbox_path)
+    def get_username_textbox(self):
+        return Textbox(self.driver, self.username_textbox_path)
 
-    # def set_username_textbox(self, username):
-    # self.get_username_textbox().set_text(username)
+    def set_username_textbox(self, username):
+        self.get_username_textbox().set_text(username)
 
     def get_password_textbox(self):
         return Textbox(self.driver, self.password_textbox_path)
@@ -139,6 +140,7 @@ class RegisterForm(object):
         self.set_state_textbox(form_data[0]["state"])
         self.set_postalCode_textbox(form_data[0]["postalCode"])
         self.set_country_multiple_selection(form_data[0]["country"])
+        self.set_username_textbox(form_data[0]["username"])
         self.set_password_textbox(form_data[0]["password"])
         self.set_confirm_password_textbox(form_data[0]["confirm_password"])
 
@@ -176,7 +178,7 @@ class Component(object):
             try:
                 self.element = self.driver.find_element_by_xpath(self.path)
             except NoSuchElementException:
-
+                self.element = self.driver.get_element_by_id(self.path)
         return self.element
 
     def click(self):
