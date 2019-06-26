@@ -1,5 +1,7 @@
 # noinspection PyUnresolvedReferences
-import pytest, json
+import pytest
+# noinspection PyUnresolvedReferences
+import json
 from library import *
 
 
@@ -7,8 +9,8 @@ def test_guru98():
     browser = Browser("chrome")
     browser.go_to_url("http://demo.guru99.com/test/newtours/index.php")
 
-    with open("/home/mert/Documents/Training/TestFW/library/web_gui/user_data.json", "r") as json_file:
-        user_data = json.loads(json_file.read())
+    with open("/home/mert/Documents/Training/TestFW/library/web_gui/user_data.json", "r") as jsonFile:
+        user_data = json.loads(jsonFile.read())
 
     expected_register_message = "Thank you for registering."
 
