@@ -1,5 +1,6 @@
 import time
 import json
+# noinspection PyUnresolvedReferences
 from selenium.common.exceptions import NoSuchElementException
 
 with open("/home/mert/Documents/Training/TestFW/library/web_gui/object_repository.json", "r") as json_file:
@@ -100,11 +101,11 @@ class RegisterForm(object):
     def set_state_textbox(self, state):
         self.get_state_textbox().set_text(state)
 
-    def get_postalCode_textbox(self):
+    def get_postal_code_textbox(self):
         return Textbox(self.driver, self.postalCode_textbox_path)
 
-    def set_postalCode_textbox(self, postalcode):
-        self.get_postalCode_textbox().set_text(postalcode)
+    def set_postal_code_textbox(self, postal_code):
+        self.get_postal_code_textbox().set_text(postal_code)
 
     def get_country_multiple_selection(self):
         return DropDownList(self.driver, self.dropDown_list__path)
@@ -138,7 +139,7 @@ class RegisterForm(object):
         self.set_address_textbox(form_data[0]["address"])
         self.set_city_textbox(form_data[0]["city"])
         self.set_state_textbox(form_data[0]["state"])
-        self.set_postalCode_textbox(form_data[0]["postalCode"])
+        self.set_postal_code_textbox(form_data[0]["postalCode"])
         self.set_country_multiple_selection(form_data[0]["country"])
         self.set_username_textbox(form_data[0]["username"])
         self.set_password_textbox(form_data[0]["password"])

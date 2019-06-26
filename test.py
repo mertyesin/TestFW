@@ -1,5 +1,5 @@
-import pytest
-import json
+# noinspection PyUnresolvedReferences
+import pytest, json
 from library import *
 
 
