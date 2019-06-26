@@ -173,7 +173,9 @@ class Component(object):
     def get(self):
         if not self.element:
             time.sleep(1)
-            self.element = self.driver.find_element_by_xpath(self.path)
+            try:
+                self.element = self.driver.find_element_by_xpath(self.path)
+            except NoSuchElementException:
 
         return self.element
 
