@@ -52,7 +52,7 @@ class RegisterForm(object):
         self.city_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["city_textbox_path"]
         self.state_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["state_textbox_path"]
         self.postalCode_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["postalCode_textbox_path"]
-        self.dropDown_list__path = object_repository["MainPage"][0]["registerPage"][0]["dropDown_list__path"]
+        self.dropDown_list_path = object_repository["MainPage"][0]["registerPage"][0]["dropDown_list_path"]
         self.username_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["username_textbox_path"]
         self.password_textbox_path = object_repository["MainPage"][0]["registerPage"][0]["password_textbox_path"]
         self.confirm_password_textbox_path = object_repository["MainPage"][0]["registerPage"][0][
@@ -108,7 +108,7 @@ class RegisterForm(object):
         self.get_postal_code_textbox().set_text(postal_code)
 
     def get_country_multiple_selection(self):
-        return DropDownList(self.driver, self.dropDown_list__path, countryList)
+        return DropDownList(self.driver, self.dropDown_list_path, countryList)
 
     def set_country_multiple_selection(self, country):
         self.get_country_multiple_selection().set_text(country)
