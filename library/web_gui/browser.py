@@ -26,4 +26,4 @@ class Browser(object):
 
     def close(self):
         self.driver.close()
-        #self.driver.quit()
+        # self.driver.quit()
