@@ -1,5 +1,7 @@
 # noinspection PyUnresolvedReferences
 from selenium import webdriver
+# noinspection PyUnresolvedReferences
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 
 class Browser(object):
@@ -13,6 +15,8 @@ class Browser(object):
     def create_driver(self):
         if self.browser_type == "chrome":
             self.driver = webdriver.Chrome()
+        if self.browser_type == "firefox":
+            self.driver = webdriver.Firefox()
 
     def go_to_url(self, url):
         if self.driver:
@@ -22,4 +26,4 @@ class Browser(object):
 
     def close(self):
         self.driver.close()
-        self.driver.quit()
+        #self.driver.quit()
