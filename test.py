@@ -5,6 +5,7 @@ import json
 from library import *
 
 
+# @pytest.mark.skip(reason="no way of currently testing this")
 def test_guru98():
     browser = Browser("chrome")
     browser.go_to_url("http://demo.guru99.com/test/newtours/index.php")
