@@ -108,7 +108,7 @@ class RegisterForm(object):
         self.get_postal_code_textbox().set_text(postal_code)
 
     def get_country_multiple_selection(self):
-        return DropDownList(self.driver, self.dropDown_list__path)
+        return DropDownList(self.driver, self.dropDown_list__path, countryList)
 
     def set_country_multiple_selection(self, country):
         self.get_country_multiple_selection().set_text(country)
@@ -208,13 +208,14 @@ class Textbox(Component):
 
 class DropDownList(Component):
 
-    def __init__(self, driver, path):
+    def __init__(self, driver, path, dropdownlist):
         super(DropDownList, self).__init__(driver, path)
         global countryList
         self.path = path
+        self.list = dropdownlist
 
     def set_text(self, text):
-        self.path = self.path + "/option[" + countryList[text] + "]"
+        self.path = self.path + "/option[" + self.list[text] + "]"
         self.get().click()
 
 
