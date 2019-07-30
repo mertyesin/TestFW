@@ -1,0 +1,20 @@
+{
+  "url": "http://demo.guru99.com/test/newtours/index.php",
+  "browserType": "chrome",
+  "registerInfo": [
+    {
+      "first_name": "Mert",
+      "last_name": "Yesin",
+      "phone": "+905315993639",
+      "email": "mertyesin89@gmail.com",
+      "address": "Mitte 5 / 13",
+      "city": "Berlin",
+      "state": "Germany",
+      "postalCode": "655814",
+      "country": "AMERICAN SAMOA",
+      "username": "mertyesin",
+      "password": "268426",
+      "confirm_password": "268426"
+    }
+  ]
+}
